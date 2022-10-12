@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div id="root"></div>
+</body>
+<script src="./vue.js"></script>
+<script>
+    Vue.component('my-button',{
+        template:'<button>全局组件的button</button>'
+    })
+    let Sub = Vue.extend({
+        template:'<button>自己身上的按钮<my-button></my-button></button>',
+        components:{
+            'my-button':{
+                template:'<button>子组件自己的button</button>',
+            }
+        }
+    })
+    new Sub().$mount("#root");
+</script>
+</html>

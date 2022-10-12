@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script src="./reactivity.global.js"></script>
+    <script>
+        let { ref, effect, watch, reactive, toRefs } = VueReactivity;
+        let a = ref(123);
+        let obj = reactive({
+            name:'lxd',
+            age:25
+        })
+        let {name,age} = toRefs(obj);
+        effect(()=>{
+            console.log(name.value,age.value);
+        })
+        
+        // watch(()=>obj.name,(newVal,oldVal)=>{
+        //     console.log(newVal,oldVal);
+        // })
+        setTimeout(()=>{
+            name.value = 'zbb';
+            age.value = 22;
+        },1000)
+    </script>
+</body>
+</html>
